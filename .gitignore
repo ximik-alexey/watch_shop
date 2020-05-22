@@ -1,3 +1,5 @@
 watch_shop/config.py
 watch_shop/__pycache__/*.*
 watch_shop/__pycache__
+*/__pycache__/*.*
+*/__pycache__
