@@ -69,6 +69,7 @@ body{
 	padding: 15px 0;
 }
 
+
 .nav{
 	display: flex;
 	font-size: 30px;
@@ -87,13 +88,15 @@ body{
 	color: #c21c24;
 	opacity: 1;
 }
-/*.phone{
 
+#name{
 	margin-left: 60px;
-	font-size: 20px;
-	font-weight: 700;
+	opacity: .8;
+	text-decoration: none;
+	font-size: 12px;
 	color: #454444;
-}*/
+	transition: color .2s linear;
+}
 
 h2{
 	text-align: center;

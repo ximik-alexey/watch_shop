@@ -1,0 +1,30 @@
+{% load static %}
+<header class="header">
+		<div class='container'>
+			<div class="header_inner">
+				<div class="logo ">
+					<img class='logo_img' src="{% static '/shop/img/logo.png' %}">
+				</div>
+				<nav class="nav">
+                    {% if user.is_phone_number_verified %}
+					    <a href="/" class="nav_link">каталог</a>
+					    <a href="/" class="nav_link">бренды</a>
+					    <a href="/" class="nav_link">контакты</a>
+                        <a href="/register/logout/" class="nav_link">выход</a>
+                        <a href="/" id="name"  >здравствуйте {{ user.first_name }}</a>
+                        
+                    {% else %}
+                        <a href="/" class="nav_link">каталог</a>
+					    <a href="/" class="nav_link">бренды</a>
+					    <a href="/" class="nav_link">контакты</a>
+					    <a href="/register/" class="nav_link">регистрация</a>
+					    <a href="/register/login/" class="nav_link">вход</a>
+                    {% endif %}
+				</nav>
+				<div class="basket ">
+					<a href="/" class="basket_img">
+					</a>
+				</div>
+			</div>
+		</div>
+  	</header>

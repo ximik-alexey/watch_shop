@@ -13,27 +13,7 @@
     </title>
 </head>
 <body>
-	<header class="header">
-		<div class='container'>
-			<div class="header_inner">
-				<div class="logo ">
-					<img class='logo_img' src="{% static '/shop/img/logo.png' %}">
-				</div>
-				<nav class="nav">
-					<a href="/" class="nav_link">каталог</a>
-					<a href="/" class="nav_link">бренды</a>
-					<a href="/" class="nav_link">контакты</a>
-					<a href="/register/" class="nav_link">регистрация</a>
-					<a href="/" class="nav_link">вход</a>
-				</nav>
-				<div class="basket ">
-					<a href="/" class="basket_img">
-					</a>	
-				</div><!-- 
-				<div class="phone">t. +375 (33) 333 33 33 </div> -->
-			</div>
-		</div>
-  	</header>
+	{% include 'shop/header.html' %}
   	<section class="section">
   		<div class="container">
   			{% block app %}

@@ -1,5 +1,5 @@
 from django import forms
-
+from django.contrib.auth.hashers import make_password
 from account.models import User
 
 
@@ -10,13 +10,14 @@ class RegistrationForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['username', 'password']
+        fields = ['username', 'first_name', 'password']
         widgets = {
             'password': forms.PasswordInput,
         }
         labels = {
             "password": 'пароль',
             'username': 'телефон',
+            'first_name': 'имя'
         }
         help_texts = {
             'username': 'пример 375291234567',
@@ -39,6 +40,10 @@ class RegistrationForm(forms.ModelForm):
             raise forms.ValidationError('недопустимое имя')
         return username
 
+    def save(self, commit=True):
+        self.instance.password = make_password(self.cleaned_data['password'])
+        return super().save(self)
+
 
 class VerificationForm(forms.Form):
     token = forms.CharField(
@@ -50,3 +55,19 @@ class VerificationForm(forms.Form):
         if not token.isdigit() or not len(token) == 6:
             raise forms.ValidationError('недопустимые символы')
         return self.data['token']
+
+
+class LoginForm(forms.Form):
+    login = forms.CharField(
+        label='телефон'
+    )
+    password = forms.CharField(
+        widget=forms.PasswordInput,
+        label='пароль'
+    )
+
+    def clean_login(self):
+        login = self.data['login']
+        if not login.isdigit() or not len(login) == 12:
+            raise forms.ValidationError('недопустимые символы')
+        return self.data['login']
