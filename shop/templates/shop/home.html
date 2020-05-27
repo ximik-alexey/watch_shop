@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <link rel="shortcut icon" type="image/png" href="{% static 'shop/img/favicon.png' %}"/>
+    <link rel="stylesheet" href="{% static 'shop/css/styles.css' %}">
+     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"> 
+    <title>
+    	{% block title%}
+    	каталог
+    	{% endblock %}
+    </title>
+</head>
+<body>
+	<header class="header">
+		<div class='container'>
+			<div class="header_inner">
+				<div class="logo ">
+					<img class='logo_img' src="{% static '/shop/img/logo.png' %}">
+				</div>
+				<nav class="nav">
+					<a href="/" class="nav_link">каталог</a>
+					<a href="/" class="nav_link">бренды</a>
+					<a href="/" class="nav_link">контакты</a>
+					<a href="/register/" class="nav_link">регистрация</a>
+					<a href="/" class="nav_link">вход</a>
+				</nav>
+				<div class="basket ">
+					<a href="/" class="basket_img">
+					</a>	
+				</div><!-- 
+				<div class="phone">t. +375 (33) 333 33 33 </div> -->
+			</div>
+		</div>
+  	</header>
+  	<section class="section">
+  		<div class="container">
+  			{% block app %}
+  			
+  			 {% endblock%}  
+  		</div>
+  	</section>
+  	<footer>
+
+
+
+
+   		
+  	</footer>
+    
+</body>
+</html>

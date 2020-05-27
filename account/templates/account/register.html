@@ -1,0 +1,15 @@
+{% extends 'shop/home.html' %}
+
+{% block title%}
+    Регистрация
+{% endblock %}
+{% block app%}
+    <div class="card">
+    	<h2>Форма регистрации</h2>
+    	<form class="form" method="post" action="/register/">
+    		{% csrf_token%}
+    		{{ form }}
+    		<input class="input" type="submit">
+    	</form>
+    </div>
+{% endblock%}
