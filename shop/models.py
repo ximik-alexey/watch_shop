@@ -1,12 +1,17 @@
 from django.db import models
+from django.urls import reverse
 
 
 class Brand(models.Model):
     name = models.CharField('бренд', max_length=200, db_index=True)
     slug = models.SlugField('url бренд', max_length=200, db_index=True, unique=True)
 
+    def get_absolute_url(self):
+        return reverse('shop:product_list_by_category',
+                       args=[self.slug])
+
     class Meta:
-        # ordering = ('name',)
+        ordering = ('name',)
         verbose_name = 'бренд'
         verbose_name_plural = 'бренды'
 
@@ -52,7 +57,7 @@ class WaterResistanceClass(models.Model):
 
 
 class Product(models.Model):
-    brand = models.ForeignKey(Brand, related_name='products', verbose_name='категория', on_delete=models.CASCADE)
+    brand = models.ForeignKey(Brand, related_name='products', verbose_name='бренд', on_delete=models.CASCADE)
     name = models.CharField('имя', max_length=200, db_index=True)
     slug = models.SlugField('url продукта', max_length=200, db_index=True)
     image = models.ImageField('изображение', upload_to='shop/templates/img', blank=True)
@@ -70,10 +75,12 @@ class Product(models.Model):
     updated = models.DateTimeField('отредактировано', auto_now=True)
 
     class Meta:
-        # ordering = ('name',)
-        # index_together = (('id', 'slug'),)
         verbose_name = 'товар'
         verbose_name_plural = 'товары'
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('shop:product_detail',
+                       args=[self.id, self.slug])

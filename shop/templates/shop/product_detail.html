@@ -1,0 +1,74 @@
+{% extends "shop/home.html" %}
+{% load static %}
+{% block title %}
+    {% if brand %}
+        {{ brand.title }}
+    {% else %}
+        Товар
+    {% endif %}
+{% endblock %}
+{% block content %}
+    <div class="product-detail">
+        <div>
+            <img class="product_detail_img" src="
+            {% if product.image %}
+                {{ product.image.url }}
+            {% else %}
+                {% static '/shop/templates/img/no_image.png' %}
+            {% endif %}"
+            >
+            <h1 class="product_name">{{ product.name }}</h1>
+
+            <p class="price">{{ product.price }}</p>
+
+        </div>
+            
+        <div class="description">
+            <div>
+                ОПИСАНИЕ:
+            </div>
+            <div >
+                {{ product.description|linebreaks }}
+            </div>
+            <div class="feature_table">
+                <table>
+                    <div class="table_name">
+                        ХАРАКТЕРИСТИКИ:
+                    </div>
+                    <tr class="table_line">
+                        <td class="name_colum">
+                             механизм
+                        </td>
+                        <td class="feature_column">
+                            {{ product.mechanism_type}}
+                        </td>
+                    </tr>
+                    <tr class="table_line">
+                        <td class="name_colum">
+                             стекло
+                        </td>
+                        <td class="feature_column">
+                            {{ product.glass}}
+                        </td>
+                    </tr>
+                    <tr class="table_line">
+                        <td class="name_colum">
+                             защита от влаги
+                        </td>
+                        <td class="feature_column">
+                            {{ product.water_resistance_class}}
+                        </td>
+                    </tr>
+                    <tr class="table_line">
+                        <td class="name_colum">
+                             размер
+                        </td>
+                        <td class="feature_column">
+                            {{ product.dimension}}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
