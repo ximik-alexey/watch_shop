@@ -19,12 +19,12 @@ from django.urls import path
 from django.urls import include
 from . import settings
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('shop.urls')),
     path('register/', include('account.urls')),
-    ]
+    path('basket/', include('basket.urls', namespace='basket')),
+]
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

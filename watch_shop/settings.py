@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'account.apps.AccountConfig',
-    'shop.apps.ShopConfig'
+    'shop.apps.ShopConfig',
+    'basket.apps.BasketConfig'
 ]
 
 MIDDLEWARE = [
@@ -84,7 +85,6 @@ DATABASES = {
     }
 }
 
-
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
@@ -124,3 +124,4 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MEDIA_URL = '/templates/img/'
 MEDIA_ROOT = os.path.join(BASE_DIR, '')
+BASKET_SESSION_ID = 'basket'

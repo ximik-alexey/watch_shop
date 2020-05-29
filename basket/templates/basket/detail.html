@@ -1,0 +1,59 @@
+{% extends 'shop/home.html' %}
+ {% load static %}
+{% block title%}
+    корзина
+{% endblock %}
+{% block content %}
+    <table class="basket">
+        <thead>
+        <tr class="tr_head_colum_text">
+            <th>фото</th>
+            <th>имя</th>
+            <th>количество</th>
+            <th>цена</th>
+            <th>удалить</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in basket %}
+            {% with product=item.product %}
+                <tr class="tr_head_colum_text">
+                    <td>
+                        <a href="{{ product.get_absolute_url }}">
+                            <img class="product_basket_detail_img" src="
+                                {% if product.image %}
+                                    {{ product.image.url }}
+                                 {% else %}
+                                     {% static '/basket/img/no_image.png' %}
+                                {% endif %}"
+                        </a>
+                    </td>
+                    <td>{{ product.name }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td >{{ item.total_price }}</td>
+                    <td>
+                        <a href="{% url 'basket:basket_remove' product.id%}">
+                            <div>
+                                <img class="remove_img" src="{% static 'shop/img/remove.png' %}">
+                            </div>
+                        </a>
+                    </td>
+                </tr>
+            {% endwith %}
+        {% endfor %}
+        </tbody>
+        </table>
+        <table class="total">
+        <tbody class="total">
+        <tr >
+            <td class="total_header">общая стоимость:</td>
+
+            <td class="num">{{ basket.get_total_price }}</td>
+        </tr>
+        </tbody>
+    </table>
+        <div class="text-right">
+            <a  href="{% url 'shop:product_list' %}" class="button-light">в коталог</a>
+            <a  href="#" class="button-light">оформить</a>
+        </div>
+{% endblock %}
