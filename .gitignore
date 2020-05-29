@@ -4,4 +4,4 @@ watch_shop/__pycache__
 */__pycache__/*.*
 */__pycache__
 __pycache__/
-watch_shop/shop/templates/img/*.*
+/shop/templates/img/*.*
