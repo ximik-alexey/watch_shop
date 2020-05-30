@@ -69,6 +69,7 @@ class Product(models.Model):
     mechanism_type = models.ForeignKey(MechanismType, related_name='products',
                                        verbose_name='тип механизма', on_delete=models.CASCADE)
     price = models.DecimalField('цена', max_digits=10, decimal_places=2)
+    quantity = models.PositiveIntegerField('количество')
     stock = models.PositiveIntegerField('остатки')
     available = models.BooleanField('доступность', default=True)
     created = models.DateTimeField('создано', auto_now_add=True)
@@ -84,3 +85,12 @@ class Product(models.Model):
     def get_absolute_url(self):
         return reverse('shop:product_detail',
                        args=[self.id, self.slug])
+
+    def save(self, force_insert=False, force_update=False, using=None,
+             update_fields=None):
+        if self.stock == 0:
+            self.available = False
+        if self.stock != 0:
+            self.available = True
+        return super().save()
+

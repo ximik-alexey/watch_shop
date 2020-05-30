@@ -21,6 +21,8 @@ class Basket(object):
             self.basket[product_id]['quantity'] = quantity
         else:
             self.basket[product_id]['quantity'] += quantity
+        if self.basket[product_id]['quantity'] > product.stock:
+            self.basket[product_id]['quantity'] = product.stock
         self.save()
 
     def save(self):
