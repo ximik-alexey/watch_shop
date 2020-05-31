@@ -24,7 +24,6 @@ class Glass(models.Model):
     slug = models.SlugField('url стекла', max_length=200, unique=True)
 
     class Meta:
-        # ordering = ('name',)
         verbose_name = 'стекло'
         verbose_name_plural = 'стекло'
 

@@ -53,6 +53,7 @@ class OrderItem(models.Model):
             product.stock = product.quantity - number
             self.limit = 0
             product.save()
+            super().save()
         else:
             product.stock = 0
             product.save()

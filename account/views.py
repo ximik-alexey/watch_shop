@@ -76,5 +76,5 @@ def change_password(request):
             form = VerificationForm()
             return render(request, 'account/register_success.html', context={'form': form})
         else:
-            return render(request, 'account/register.html', context={'form': form})
+            return render(request, 'account/change_password.html', context={'form': form})
 

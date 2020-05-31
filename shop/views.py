@@ -1,9 +1,11 @@
+from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404
-from django.views.decorators.http import require_POST
+from django.views.decorators.http import require_GET
 from .models import Brand, Product
 from basket.forms import BasketAddProductForm, BasketAddProductMainForm
+from django.conf import settings
 
-
+@require_GET
 def product_list(request, category_slug=None):
     brand = None
     categories = Brand.objects.all()
@@ -12,12 +14,14 @@ def product_list(request, category_slug=None):
         brand = get_object_or_404(Brand, slug=category_slug)
         products = products.filter(brand=brand)
     basket_product_form = BasketAddProductMainForm()
+    page = request.GET.get('page', 1)
+    p = Paginator(products, settings.ITEMS_PER_PAGE)
     return render(request,
                   'shop/product_list.html',
                   {
                       'brand': brand,
                       'categories': categories,
-                      'products': products,
+                      'page': p.page(page),
                       'basket_product_form': basket_product_form
                   })
 
