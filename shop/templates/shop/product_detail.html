@@ -9,23 +9,27 @@
 {% endblock %}
 {% block content %}
     <div class="product-detail">
-        <div>
+        <div class="product_detail_divv">
+            <div>
+            <div class="product_detail_img_div">
             <img class="product_detail_img" src="
             {% if product.image %}
                 {{ product.image.url }}
             {% else %}
                 {% static '/shop/templates/img/no_image.png' %}
             {% endif %}"
-            >
+            ></div>
             <h1 class="product_name">{{ product.name }}</h1>
 
             <p class="price">{{ product.price }} BYN</p>
-            <form action="{% url 'basket:basket_add' product.id %}" method="post">
+                <div>
+            <form class="form_detail" action="{% url 'basket:basket_add' product.id %}" method="post">
                 {{ basket_product_form }}
                 {% csrf_token %}
-            <input type="submit" value="добавить">
+                <button class="button">добавить</button>
+<!--            <input type="submit" value="добавить">-->
             </form>
-
+            </div>
         </div>
             
         <div class="description">

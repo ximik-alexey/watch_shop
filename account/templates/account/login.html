@@ -9,7 +9,8 @@
     	<form class="form" method="post" action="/register/login/">
     		{% csrf_token%}
     		{{ form }}
-    		<input class="input" type="submit">
+    		<input type="submit">
+    		<a href="/register/change_password/">сменить пароль</a>
     	</form>
     </div>
 {% endblock%}

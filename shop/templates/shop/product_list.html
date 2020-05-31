@@ -8,38 +8,51 @@
     {% endif %}
 {% endblock %}
 {% block content %}
+<div class="sidebar_and_contant">
     <div id="sidebar">
         <h3>Бренды</h3>
-        <ul>
-            <li {% if not category %} class='selected' {% endif %}>
+        <ul class="ul_filter_zone">
+            <li {% if not category %}  {% endif %}>
                 <a href="{% url 'shop:product_list' %}">ВСЕ</a>
             </li>
             {% for c in categories %}
-                <li {% if category.slug == c.slug %} class="selected" {% endif %} >
+                <li {% if category.slug == c.slug %}  {% endif %} >
                     <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
                 </li>
             {% endfor %}
         </ul>
     </div>
     <div id="main" class="product-list">
-<!--        <h1>{% if category %}-->
-<!--                {{ category.name }}-->
-<!--            {% else %}-->
-<!--                часы-->
-<!--            {% endif %}</h1>-->
-        {% for product in products %}
-            <div class="item">
-                <a href="{{ product.get_absolute_url }}">
-                    <img class='prod_img' src="
-                    {% if product.image %}
-                        {{ product.image.url }}
-                    {% else %}
-                        {% static '/shop/img/no_image.png' %}
-                    {% endif %}">
-                </a>
-                <a href="{{ product.get_absolute_url }}">{{ product.name }}</a><br>
-                {{ product.price }}
+        <ul class="product_detail_div">
+            {% for product in products %}
+                    <li class="li_colum">
+                        <div>
+                        <div class="product_detail_img_div">
+                             <a href="{{ product.get_absolute_url }}">
+                                <img class='prod_img' src="
+                                    {% if product.image %}
+                                         {{ product.image.url }}
+                                    {% else %}
+                                         {% static '/shop/img/no_image.png' %}
+                                    {% endif %}">
+                                </a>
+                        </div>
+                        <div >
+                            <a class="product_detail_name_div" href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+                        </div>
+                        <div class="product_detail_price_div"> {{ product.price }} BYN</div>
+                        <div>
+                            <form action="{% url 'basket:basket_add' product.id %}" method="post">
+                                    {{ basket_product_form }}
+                                    {% csrf_token %}
+                             <button class="button">добавить</button>
+                            </form>
+                        </div>
+                        </div>
+
+                    </li>
+                    {% endfor %}
+                </ul>
             </div>
-        {% endfor %}
-    </div>
+</div>
 {% endblock %}

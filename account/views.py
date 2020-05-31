@@ -1,7 +1,9 @@
 from django.contrib.auth import login, logout, authenticate
 from django.http import Http404
 from django.shortcuts import render, redirect
-from .forms import RegistrationForm, VerificationForm, LoginForm
+
+from .models import User
+from .forms import RegistrationForm, VerificationForm, LoginForm, ChangePasswdForm
 
 
 def verify(request):
@@ -54,3 +56,25 @@ def login_user(request):
                 return redirect('/')
             else:
                 return redirect('/register/login/')
+
+
+def change_password(request):
+    if request.method == 'GET':
+        form = ChangePasswdForm()
+        return render(request, 'account/change_password.html', context={'form': form})
+    elif request.method == 'POST':
+        form = ChangePasswdForm(request.POST)
+        if form.is_valid():
+            user = User.objects.get(username=form.data['username'])
+            new_passwd = form.data['password']
+            user.set_password(new_passwd)
+            user.save()
+            user.is_phone_number_verified = False
+            user.save()
+            user.send_token()
+            login(request, user)
+            form = VerificationForm()
+            return render(request, 'account/register_success.html', context={'form': form})
+        else:
+            return render(request, 'account/register.html', context={'form': form})
+

@@ -1,25 +1,27 @@
 {% extends 'shop/home.html' %}
  {% load static %}
 {% block title%}
-    ордер
+    заказ
 {% endblock %}
-{% block content %}
-    <h1>Checkout</h1>
-    <div class="order-info">
-        <h3>Your order</h3>
-        <ul>
+{% block content%}
+
+<div id="order_card" class="card ">
+        <div class="h3_order">
+        <p>ваш заказ</p>
+        </div>
+        <ul class="ui_order">
             {% for item in basket %}
                 <li>
-                    {{ item.quantity }}x {{ item.product.name }}
-                    <span>${{ item.total_price }}</span>
+                    {{ item.quantity }}x   {{ item.product.name }}
+                    <span class="order_span">{{ item.total_price }} BYN</span>
                 </li>
             {% endfor %}
         </ul>
-        <p>Total: ${{ basket.get_total_price }}</p>
-    </div>
-    <form action="." method="post" class="order-form">
+        <p class="order_total_price">общая стоимость: {{ basket.get_total_price }} BYN</p>
+    <form class="form" method="post">
         {{ form }}
-        <p><input type="submit" value="Place order"></p>
+        <p><input type="submit" value="отправить"></p>
         {% csrf_token %}
     </form>
+</div>
 {% endblock %}

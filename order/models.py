@@ -44,13 +44,14 @@ class OrderItem(models.Model):
              update_fields=None):
         super().save()
         name = self.product
-        objj = OrderItem.objects.filter(product=name).values("quantity")
+        obj = OrderItem.objects.filter(product=name).values("quantity")
         number = 0
-        for i in objj:
+        for i in obj:
             number += i["quantity"]
         product = Product.objects.get(name=name)
         if (product.quantity - number) > 0:
             product.stock = product.quantity - number
+            self.limit = 0
             product.save()
         else:
             product.stock = 0
@@ -63,4 +64,4 @@ class OrderItem(models.Model):
         product = Product.objects.get(name=name)
         product.stock += self.quantity
         product.save()
-        super().save()
+        super().delete()
