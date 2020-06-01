@@ -44,15 +44,16 @@ class MechanismType(models.Model):
 
 
 class WaterResistanceClass(models.Model):
-    name = models.CharField('влагозащита', max_length=200)
+    name = models.IntegerField('влагозащита')
     slug = models.SlugField('url влагозащиты', max_length=200, unique=True)
 
     class Meta:
+        ordering = ('name',)
         verbose_name = 'влагозащита'
         verbose_name_plural = 'влагозащита'
 
     def __str__(self):
-        return self.name
+        return str(self.name)
 
 
 class Product(models.Model):
