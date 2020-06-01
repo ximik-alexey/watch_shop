@@ -469,3 +469,24 @@ label{
 .form input{
 	font-size: 25px;
 }
+
+.sort{
+
+	font-size: 20px;
+	color: gray;
+}
+
+.sort a{
+	margin-left: 15px;
+	font-size: 16px;
+	color: gray;
+	text-decoration: none;
+}
+
+
+.sort a:hover{
+	margin-left: 15px;
+	font-size: 16px;
+	color: #c21c24;
+	text-decoration: none;
+}

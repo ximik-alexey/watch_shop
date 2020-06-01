@@ -7,14 +7,14 @@
 				</div>
 				<nav class="nav">
                     {% if user.is_phone_number_verified %}
-					    <a href="/" class="nav_link">каталог</a>
+					    <a href='/' target="_self" class="nav_link">каталог</a>
 					    <a href="/" class="nav_link">бренды</a>
 					    <a href="/" class="nav_link">контакты</a>
                         <a href="/register/logout/" class="nav_link">выход</a>
                         <a href="/" id="name"  >здравствуйте {{ user.first_name }}</a>
                         
                     {% else %}
-                        <a href="/" class="nav_link">каталог</a>
+                        <a href="/" target="_self" class="nav_link">каталог</a>
 					    <a href="/" class="nav_link">бренды</a>
 					    <a href="/" class="nav_link">контакты</a>
 					    <a href="/register/" class="nav_link">регистрация</a>

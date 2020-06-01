@@ -58,6 +58,7 @@ class OrderItem(models.Model):
             product.stock = 0
             product.save()
             self.limit = product.quantity - number
+            super().save()
         return
 
     def delete(self, using=None, keep_parents=False):

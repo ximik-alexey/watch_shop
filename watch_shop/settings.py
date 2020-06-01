@@ -126,4 +126,5 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/templates/img/'
 MEDIA_ROOT = os.path.join(BASE_DIR, '')
 BASKET_SESSION_ID = 'basket'
-ITEMS_PER_PAGE = 3
+ITEMS_PER_PAGE = 2
+FILTER_SESSION_ID = 'filter_qr'
