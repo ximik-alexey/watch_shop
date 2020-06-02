@@ -3,14 +3,14 @@ from django.forms import IntegerField
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.http import require_GET
 
-from .filter import Filter_quary
+from .filter import FilterQuery
 from .models import Brand, Product
 from basket.forms import BasketAddProductForm, BasketAddProductMainForm
 from django.conf import settings
 
 
 def filter_content(request, products):
-    filter = Filter_quary(request)
+    filter = FilterQuery(request)
     if filter.filter_qr.get('filter_number')['filter'] == 1:
         prod = products.order_by('-price')
     elif filter.filter_qr.get('filter_number')['filter'] == 2:
@@ -30,7 +30,7 @@ def filter_content(request, products):
 
 @require_GET
 def product_list(request, category_slug=None):
-    filter = Filter_quary(request)
+    filter = FilterQuery(request)
     brand = None
     categories = Brand.objects.all().order_by('name')
     products = Product.objects.filter(available=True)
@@ -52,9 +52,9 @@ def product_list(request, category_slug=None):
     elif not request.GET:
         filter.change(0)
     page = request.GET.get('page', 1)
-    print(request.GET)
+    # print(request.GET)
     products = filter_content(request, products)
-    print(filter.filter_qr.get('filter_number')['filter'])
+    # print(filter.filter_qr.get('filter_number')['filter'])
     basket_product_form = BasketAddProductMainForm()
     p = Paginator(products, settings.ITEMS_PER_PAGE)
     return render(request,

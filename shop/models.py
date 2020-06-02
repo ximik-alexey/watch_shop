@@ -90,7 +90,7 @@ class Product(models.Model):
              update_fields=None):
         if self.stock == 0:
             self.available = False
-        if self.stock != 0:
+        else:
             self.available = True
         return super().save()
 

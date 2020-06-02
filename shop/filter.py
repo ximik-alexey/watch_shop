@@ -1,7 +1,7 @@
 from watch_shop import settings
 
 
-class Filter_quary(object):
+class FilterQuery(object):
 
     def __init__(self, request):
         self.session = request.session

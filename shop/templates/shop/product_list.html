@@ -11,7 +11,7 @@
 
 <div class="sidebar_and_contant">
     <div id="sidebar">
-        <h3>Бренды</h3>
+        <h3>Бренды:</h3>
         <ul class="ul_filter_zone">
             <li {% if not category %}  {% endif %}>
                 <a href="{% url 'shop:product_list' %}">ВСЕ</a>
@@ -24,7 +24,7 @@
         </ul>
         <div>
             <div>
-                <h3>сортировать:</h3>
+                <h3>Сортировать:</h3>
                 </div>
             <div class="sort">
             <span>по цене:</span>
@@ -46,6 +46,12 @@
             <div class="sort">
             <a href="?water=1" target="_self"> наименьшей </a>
                 <a href="?water=2" target="_self"> наибольшей </a>
+                </div>
+                <div class="sort">
+            <span>сброс:</span>
+                </div>
+            <div class="sort">
+            <a href="/" target="_self"> отключить  </a>
                 </div>
 
 

@@ -2,7 +2,6 @@ from django.shortcuts import render
 from .models import OrderItem
 from .forms import OrderCreateForm, OrderCreateAnonForm
 from basket.basket import Basket
-from shop.models import Product
 
 
 def order_create(request):
@@ -27,7 +26,7 @@ def order_create(request):
                                          product=item['product'],
                                          price=item['price'],
                                          quantity=item['quantity'])
-            # очистка корзины
+
             basket.clear()
 
             return render(request, 'order/created.html',
