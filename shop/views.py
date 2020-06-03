@@ -34,6 +34,7 @@ def product_list(request, category_slug=None):
     brand = None
     categories = Brand.objects.all().order_by('name')
     products = Product.objects.filter(available=True)
+    print(products)
     if category_slug:
         brand = get_object_or_404(Brand, slug=category_slug)
         products = products.filter(brand=brand)
@@ -54,7 +55,7 @@ def product_list(request, category_slug=None):
     page = request.GET.get('page', 1)
     # print(request.GET)
     products = filter_content(request, products)
-    # print(filter.filter_qr.get('filter_number')['filter'])
+    print(products)
     basket_product_form = BasketAddProductMainForm()
     p = Paginator(products, settings.ITEMS_PER_PAGE)
     return render(request,

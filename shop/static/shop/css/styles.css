@@ -413,11 +413,14 @@ label{
 
 .sidebar_and_contant{
 	display: flex;
+
 }
 
 #sidebar{
 
 	color: gray;
+	width: 180px;
+	padding: 5px;
 	
 }
 
@@ -489,4 +492,36 @@ label{
 	font-size: 16px;
 	color: #c21c24;
 	text-decoration: none;
+}
+
+.pagination{
+
+	text-align: center;
+  	text-decoration: none;
+  	font-size: 20px;
+  	color: #454444;
+}
+.pagination a{
+
+	color: #454444;
+	text-decoration: none;
+}
+
+.footer_div{
+
+	position: absolute;
+	bottom: : 0;
+	left: 0;
+	right: 0;
+	height: 81px;
+	align-content: center;
+	background-color: #d7d7d7;
+}
+
+.footer_div p{
+	margin-right: 30px;
+	padding: 10px;
+	text-align: right;
+	font-size: 15px;
+	color: gray;
 }

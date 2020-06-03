@@ -62,11 +62,11 @@ class Product(models.Model):
     slug = models.SlugField('url продукта', max_length=200, db_index=True)
     image = models.ImageField('изображение', upload_to='shop/templates/img', blank=True)
     description = models.TextField('описание', blank=True)
-    glass = models.ForeignKey(Glass, related_name='products', verbose_name='стекло', on_delete=models.CASCADE)
+    glass = models.ForeignKey(Glass, related_name='glass', verbose_name='стекло', on_delete=models.CASCADE)
     dimension = models.CharField('размер', max_length=200, null=True)
-    water_resistance_class = models.ForeignKey(WaterResistanceClass, related_name='products',
+    water_resistance_class = models.ForeignKey(WaterResistanceClass, related_name='water',
                                                verbose_name='влагозащита', on_delete=models.CASCADE)
-    mechanism_type = models.ForeignKey(MechanismType, related_name='products',
+    mechanism_type = models.ForeignKey(MechanismType, related_name='mechanism_type',
                                        verbose_name='тип механизма', on_delete=models.CASCADE)
     price = models.DecimalField('цена', max_digits=10, decimal_places=2)
     quantity = models.PositiveIntegerField('количество')
