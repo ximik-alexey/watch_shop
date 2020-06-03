@@ -25,9 +25,11 @@ class Basket(object):
             self.basket[product_id]['quantity'] = product.stock
         self.save()
 
+
     def save(self):
         self.session[settings.BASKET_SESSION_ID] = self.basket
         self.session.modified = True
+
 
     def remove(self, product):
         product_id = str(product.id)
@@ -37,6 +39,7 @@ class Basket(object):
             else:
                 del self.basket[product_id]
             self.save()
+
 
     def __iter__(self):
         product_ids = self.basket.keys()

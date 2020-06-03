@@ -15,7 +15,7 @@ def order_create(request):
             form = OrderCreateAnonForm(request.POST)
         if form.is_valid():
             order = form.save()
-            if not form.data['phone']:
+            if not request.POST.get('phone'):
                 order.first_name = user.first_name
                 order.phone = str(user)
                 order.save()
