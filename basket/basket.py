@@ -49,8 +49,8 @@ class Basket(object):
             item['total_price'] = item['price'] * item['quantity']
             yield item
 
-    def __len__(self):
-        return sum(item['quantity'] for item in self.basket.values())
+    # def __len__(self):
+    #     return sum(item['quantity'] for item in self.basket.values())
 
     def get_total_price(self):
         return sum(Decimal(item['price']) * item['quantity'] for item in

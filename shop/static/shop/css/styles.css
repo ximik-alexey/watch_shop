@@ -25,6 +25,7 @@ body{
 .container{
 	margin: 0 auto;
 	width: 100%;
+	height: auto;
 	max-width: 1300px;
 }
 
@@ -194,7 +195,8 @@ label{
 .product-list{
 	padding: 30px;
 	display:table;
-	width: 100%;
+	width: auto;
+
 
 }
 
@@ -206,6 +208,8 @@ label{
 
 	display: flex;
 	flex-wrap: wrap;
+	height: auto;
+
 }
 .product_detail_divv{
 
@@ -413,6 +417,7 @@ label{
 
 .sidebar_and_contant{
 	display: flex;
+	height: auto;
 
 }
 
@@ -421,6 +426,7 @@ label{
 	color: gray;
 	width: 180px;
 	padding: 5px;
+	height: auto;
 	
 }
 
@@ -509,11 +515,10 @@ label{
 
 .footer_div{
 
-	position: absolute;
-	bottom: : 0;
+	position: relative;
 	left: 0;
 	right: 0;
-	height: 81px;
+	height: 60px;
 	align-content: center;
 	background-color: #d7d7d7;
 }

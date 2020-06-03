@@ -17,8 +17,10 @@ def verify(request):
             if user.secret_token_valid(form.data['token']):
                 user.user_verify()
                 return redirect('/')
+            else:
+                raise Http404()
     else:
-        return Http404()
+        raise Http404()
 
 
 def register(request):
